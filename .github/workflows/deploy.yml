@@ -70,6 +70,8 @@ jobs:
             cat > /home/${{ secrets.EC2_USER }}/app/backend/.env << EOF
             MONGODB_URL=mongodb://${{ secrets.MONGO_USER }}:${{ secrets.MONGO_PASSWORD }}@mongodb:27017/mydb?authSource=admin
             EOF
+            
+            echo "${{ secrets.DOCKER_PASSWORD }}" | sudo docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
             cd /home/${{ secrets.EC2_USER }}/app
             sudo docker compose pull
