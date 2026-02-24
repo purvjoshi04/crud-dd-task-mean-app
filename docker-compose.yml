@@ -1,9 +1,6 @@
 services:
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    image: frontend
+    image: ${DOCKER_USERNAME}/projects:frontend
     container_name: frontend
     ports:
       - "8081:80"
@@ -11,11 +8,8 @@ services:
       - backend
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    image: backend
-    container_name: backend 
+    image: ${DOCKER_USERNAME}/projects:backend
+    container_name: backend
     ports:
       - "8080:8080"
     env_file:
